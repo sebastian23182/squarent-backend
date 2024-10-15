@@ -1,5 +1,7 @@
 import os
 
+import asyncio
+
 import httpx
 
 import json
@@ -104,7 +106,10 @@ async def update_cache():
         finally:
             await rd.aclose()
 
-scheduler.add_job(update_cache, 'interval', hours=5)
+def run_update_cache():
+    asyncio.run(update_cache())
+
+scheduler.add_job(run_update_cache, 'interval', hours=5)
 scheduler.start()
 
 class _Shards(BaseModel):
