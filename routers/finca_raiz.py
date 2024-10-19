@@ -109,7 +109,7 @@ async def update_cache():
 def run_update_cache():
     asyncio.run(update_cache())
 
-scheduler.add_job(run_update_cache, 'interval', hours=5)
+scheduler.add_job(run_update_cache, 'interval', hours=12)
 scheduler.start()
 
 class _Shards(BaseModel):
